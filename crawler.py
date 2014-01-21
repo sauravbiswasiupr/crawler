@@ -1,6 +1,7 @@
 #!/usr/bin/env python 
 import urllib2
 from BeautifulSoup import BeautifulSoup
+from optparse import OptionParser
 
 __author__='Saurav'
 
@@ -44,6 +45,9 @@ def crawler(seedUrl):
 
 
 if __name__=="__main__":
-    seed='http://xkcd.com/'
+    parser=OptionParser() 
+    parser.add_option("-u","--url",dest="seed",help="supply a starting url to start crawling")
+    options,args=parser.parse_args() 
+    seed=options.seed
     crawled_links=crawler(seed)
     print "Number of pages crawled : "  , len(crawled_links)
